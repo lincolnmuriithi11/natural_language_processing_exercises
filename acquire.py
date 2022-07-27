@@ -1,27 +1,4 @@
-# #getting the urls from a website
-# def get_blog_articles():
-#     url = 'https://codeup.com/blog/'
-#     headers = {'User-Agent': 'Codeup News & Articles'} # Some websites don't accept the pyhon-requests default user-agent
-#     response = requests.get(url, headers=headers)
-#     soup = BeautifulSoup(response.text)
-#     urls = [a.attrs['href']for a in soup.select('a.more-link')]
-#     return urls
 
-
-
-# # url = 'https://codeup.com/workshops/in-person-workshop-learn-to-code-python-on-7-19/'
-# # headers = {'User-Agent': '#post-18698 > div:nth-child(1) > h1'} # Some websites don't accept the pyhon-requests default user-agent
-# # response = get(url, headers=headers)
-# # soup = BeautifulSoup(response.content, 'html.parser')
-
-
-# ######### always add the the code up here to make a the the code make sense. the headers are coppied from the 
-# def parse_blog_article(soup):
-#     return {
-#         'title': soup.select_one('h1.entry-title').text,
-#         'published': soup.select_one('.published').text,
-#         'content': soup.select_one('.entry-content').text.strip(),
-#     }
 
 from requests import get
 from bs4 import BeautifulSoup
@@ -63,6 +40,8 @@ def get_blog_articles_data(refresh=False):
         
     return pd.read_csv('blog_articles.csv')
 
+
+
 def get_news_articles_data(refresh=False):
     
     if not os.path.isfile('news_articles.csv') or refresh:
@@ -100,3 +79,28 @@ def get_news_articles_data(refresh=False):
         inshorts_article_df.to_csv('news_articles.csv', index=False)
                 
     return pd.read_csv('news_articles.csv')
+
+# #getting the urls from a website
+# def get_blog_articles():
+#     url = 'https://codeup.com/blog/'
+#     headers = {'User-Agent': 'Codeup News & Articles'} # Some websites don't accept the pyhon-requests default user-agent
+#     response = requests.get(url, headers=headers)
+#     soup = BeautifulSoup(response.text)
+#     urls = [a.attrs['href']for a in soup.select('a.more-link')]
+#     return urls
+
+
+
+# # url = 'https://codeup.com/workshops/in-person-workshop-learn-to-code-python-on-7-19/'
+# # headers = {'User-Agent': '#post-18698 > div:nth-child(1) > h1'} # Some websites don't accept the pyhon-requests default user-agent
+# # response = get(url, headers=headers)
+# # soup = BeautifulSoup(response.content, 'html.parser')
+
+
+# ######### always add the the code up here to make a the the code make sense. the headers are coppied from the 
+# def parse_blog_article(soup):
+#     return {
+#         'title': soup.select_one('h1.entry-title').text,
+#         'published': soup.select_one('.published').text,
+#         'content': soup.select_one('.entry-content').text.strip(),
+#     }
